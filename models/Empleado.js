@@ -18,11 +18,13 @@ const EmpleadoSchema = new Schema(
     },
     legajo: {
         type: Number,
-        unique:[true,"legajo ya existente"]
+        unique:[true,"legajo ya existente"],
+        required: [true, "El legajo es requerido"],
       },
     dni: {
         type: Number,
-        unique:[true,"dno ya existente"]
+        unique:[true,"dno ya existente"],
+        required: [true, "El dni es requerido"],
       },
     domicilio:{
         type:String,

@@ -52,7 +52,11 @@ const login = async (req, res) => {
     const user = await Usuario.findOne({ nombre });
     if (!user) throw new CustomError("Usuario no encontrado", 404);
     const passOk = await bcrypt.compare(contraseña, user.contraseña);
-    if (!passOk) throw new CustomError("Contraseña incorrecta", 400);
+    if (!passOk){
+      if(user.contraseña != contraseña){
+        throw new CustomError("Contraseña incorrecta", 400);
+      }
+    }
 
     res
       .status(200)
@@ -68,6 +72,7 @@ const editUser = async(req,res) =>{
   try {
       const {nombre,campos}= req.body;
       const usuarioModificado = await Usuario.findOneAndUpdate({nombre:nombre},campos,{new:true})
+      if(!usuarioModificado) throw new CustomError("mal escrito o usuario no encontrado",404)
       res.status(200).json({message:"usuario modificado con exito",usuarioModificado})
   } catch (error) {
       res
