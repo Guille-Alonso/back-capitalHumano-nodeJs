@@ -12,5 +12,5 @@ router.get("/:dni?", getEmpleados);
 router.post("/",  addEmpleado);
 router.put("/",editEmpleado)
 router.delete("/",deleteEmpleado);
-
+router.put
 module.exports = router;
