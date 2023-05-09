@@ -11,6 +11,7 @@ const app = express();
 app.use(cors()); 
 dotenv.config();
 connectDB();
+app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
