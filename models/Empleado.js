@@ -1,4 +1,5 @@
 const { Schema, model, SchemaType } = require("mongoose");
+const mongooseUniqueValidation = require("mongoose-unique-validation");
 
 const EmpleadoSchema = new Schema(
   {
@@ -60,7 +61,7 @@ const EmpleadoSchema = new Schema(
   }
 );
 
-EmpleadoSchema.plugin(mongooseUniqueValidator,{
+EmpleadoSchema.plugin(mongooseUniqueValidation,{
   message: '{PATH} debe ser único'
   })
 
