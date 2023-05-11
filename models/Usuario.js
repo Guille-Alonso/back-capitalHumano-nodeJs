@@ -6,7 +6,7 @@ const UsuarioSchema = new Schema(
     type: String,
     trim: true,
     required: [true, "nombre de usuario obligatorio"],
-    unique:[true,"usuario ya existente"]
+    unique:true
     },
     contraseña:{
     type: String,
@@ -29,5 +29,9 @@ const UsuarioSchema = new Schema(
   const { contraseña, ...nombre } = this.toObject();
   return nombre;
 };
+
+UsuarioSchema.plugin(mongooseUniqueValidator,{
+  message: '{PATH} debe ser único'
+  })
 
 module.exports = model("Usuario", UsuarioSchema);

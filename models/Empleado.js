@@ -18,12 +18,12 @@ const EmpleadoSchema = new Schema(
     },
     legajo: {
         type: Number,
-        unique:[true,"legajo ya existente"],
+        unique:true,
         required: [true, "El legajo es requerido"],
       },
     dni: {
         type: Number,
-        unique:[true,"dno ya existente"],
+        unique:true,
         required: [true, "El dni es requerido"],
       },
     domicilio:{
@@ -60,5 +60,8 @@ const EmpleadoSchema = new Schema(
   }
 );
 
+EmpleadoSchema.plugin(mongooseUniqueValidator,{
+  message: '{PATH} debe ser único'
+  })
 
 module.exports = model("Empleado", EmpleadoSchema);
