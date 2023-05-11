@@ -1,4 +1,5 @@
 const { Schema, model, SchemaType } = require("mongoose");
+const mongooseUniqueValidation = require("mongoose-unique-validation");
 
 const PuestoSchema = new Schema(
     {
@@ -6,7 +7,7 @@ const PuestoSchema = new Schema(
     type: String,
     trim: true,
     required: [true, "nombre obligatorio"],
-    unique:[true,"puesto ya existente"]
+    unique:true
     },
     descripcion:{
     type: String,
@@ -17,8 +18,7 @@ const PuestoSchema = new Schema(
     required: [true, "sueldo obligatorio"],
     },
     inicio:{
-    type: Date,
-    default:"14/02/2023"
+    type: String
     },
     estado:{
     type: String,
@@ -27,9 +27,13 @@ const PuestoSchema = new Schema(
 
 },
 {
-    timestamps: true,
+    timestamps: false,
     versionKey: false,
   }
   );
+
+  PuestoSchema.plugin(mongooseUniqueValidation,{
+    message: '{PATH} debe ser único'
+    })
 
 module.exports = model("PuestoDeTrabajo", PuestoSchema);

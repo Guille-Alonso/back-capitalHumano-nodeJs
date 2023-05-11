@@ -1,0 +1,11 @@
+const { Router } = require("express");
+const { getPuestos, addPuesto, deletePuesto, editPuesto } = require("../controllers/puestoControllers");
+
+const router = Router();
+
+router.get("/:id?", getPuestos);
+router.post("/",  addPuesto);
+router.delete("/",deletePuesto);
+router.put("/",editPuesto);
+
+module.exports = router;

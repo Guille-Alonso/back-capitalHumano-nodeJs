@@ -21,7 +21,7 @@ const UsuarioSchema = new Schema(
 
 },
 {
-    timestamps: true,
+    timestamps: false,
     versionKey: false,
   }
   );
