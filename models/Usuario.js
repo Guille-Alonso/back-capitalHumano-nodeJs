@@ -1,4 +1,5 @@
 const { Schema, model, SchemaType } = require("mongoose");
+const mongooseUniqueValidation = require("mongoose-unique-validation");
 
 const UsuarioSchema = new Schema(
     {
@@ -20,7 +21,7 @@ const UsuarioSchema = new Schema(
 
 },
 {
-    timestamps: true,
+    timestamps: false,
     versionKey: false,
   }
   );

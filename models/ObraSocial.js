@@ -26,7 +26,7 @@ const ObraSocialSchema = new Schema(
 
     },
     {
-        timestamps: true,
+        timestamps: false,
         versionKey: false,
       }
 )

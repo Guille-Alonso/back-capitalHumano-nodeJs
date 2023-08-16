@@ -1,4 +1,5 @@
 const { Schema, model, SchemaType } = require("mongoose");
+const mongooseUniqueValidation = require("mongoose-unique-validation");
 
 const EmpleadoSchema = new Schema(
   {
@@ -64,7 +65,7 @@ const EmpleadoSchema = new Schema(
     ],
   },
   {
-    timestamps: true,
+    timestamps: false,
     versionKey: false,
   }
 );
