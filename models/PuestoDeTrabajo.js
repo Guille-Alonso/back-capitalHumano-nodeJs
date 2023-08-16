@@ -6,7 +6,6 @@ const PuestoSchema = new Schema(
     type: String,
     trim: true,
     required: [true, "nombre obligatorio"],
-    unique:[true,"puesto ya existente"]
     },
     descripcion:{
     type: String,
@@ -17,8 +16,8 @@ const PuestoSchema = new Schema(
     required: [true, "sueldo obligatorio"],
     },
     inicio:{
-    type: Date,
-    default:"14/02/2023"
+    type: String, 
+    required: [true, "fecha inicio obligatoria"],
     },
     estado:{
     type: String,

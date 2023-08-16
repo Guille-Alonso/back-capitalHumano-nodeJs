@@ -11,48 +11,57 @@ const EmpleadoSchema = new Schema(
     },
     email: {
       type: String,
-      trim: true
+      trim: true,
     },
     edad: {
-      type: Number
+      type: Number,
     },
     legajo: {
-        type: Number,
-        unique:true,
-        required: [true, "El legajo es requerido"],
-      },
+      type: Number,
+      unique: true,
+      required: [true, "El legajo es requerido"],
+    },
     dni: {
-        type: Number,
-        unique:true,
-        required: [true, "El dni es requerido"],
-      },
-    domicilio:{
-        type:String,
-        trim: true
+      type: Number,
+      unique: true,
+      required: [true, "El dni es requerido"],
+    },
+    domicilio: {
+      type: String,
+      trim: true,
     },
     apellido: {
       type: String,
-      trim: true
+      trim: true,
     },
     foto: {
       type: String,
-      trim: true
+      trim: true,
     },
     genero: {
       type: String,
       enum: ["F", "M", "X"],
-      trim: true
+      trim: true,
     },
-   
-    puestos:{
-        type: Array
-    },
-    aptitudes:{
-        type: Array
-    },
-    obrasSociales:{
-        type: Array
-    }
+
+    puestos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "PuestoDeTrabajo",
+      },
+    ],
+    aptitudes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Aptitud",
+      },
+    ],
+    obrasSociales: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "ObraSocial",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -60,8 +69,8 @@ const EmpleadoSchema = new Schema(
   }
 );
 
-EmpleadoSchema.plugin(mongooseUniqueValidator,{
-  message: '{PATH} debe ser único'
-  })
+// EmpleadoSchema.plugin(mongooseUniqueValidator,{
+//   message: '{PATH} debe ser único'
+//   })
 
 module.exports = model("Empleado", EmpleadoSchema);

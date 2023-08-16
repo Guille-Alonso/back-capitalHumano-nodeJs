@@ -22,7 +22,7 @@ const getEmpleados = async (req, res) => {
   
   const addEmpleado = async (req, res) => {
     try {
-      const { nombre,apellido,email,legajo,edad,dni,domicilio,genero,foto } =
+      const { nombre,apellido,email,legajo,edad,dni,domicilio,genero,foto,puestos,aptitudes,obrasSociales } =
         req.body;
      
       const newEmpleado = new Empleado({
@@ -34,7 +34,10 @@ const getEmpleados = async (req, res) => {
         genero,
         legajo,
         edad,
-        foto
+        foto,
+        puestos:puestos.map((id) => new mongoose.Types.ObjectId(id)),
+        aptitudes:aptitudes.map((id) => new mongoose.Types.ObjectId(id)),
+        obrasSociales: obrasSociales.map((id) => new mongoose.Types.ObjectId(id))
       });
   
       const empleadoSaved = await newEmpleado.save();

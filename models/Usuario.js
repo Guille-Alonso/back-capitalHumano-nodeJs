@@ -30,8 +30,8 @@ const UsuarioSchema = new Schema(
   return nombre;
 };
 
-UsuarioSchema.plugin(mongooseUniqueValidator,{
-  message: '{PATH} debe ser único'
-  })
+// UsuarioSchema.plugin(mongooseUniqueValidator,{
+//   message: '{PATH} debe ser único'
+//   })
 
 module.exports = model("Usuario", UsuarioSchema);
