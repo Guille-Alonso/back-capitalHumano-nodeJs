@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/", getPuestos);
 router.post("/",  addPuesto);
-router.put("/",editPuesto)
+router.put("/:id",editPuesto)
 router.delete("/",deletePuesto);
 
 module.exports = router;

@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/", getobraSociales);
 router.post("/",  addObraSocial);
-router.put("/",editObraSocial)
+router.put("/:id",editObraSocial)
 router.delete("/",deleteObraSocial);
 
 module.exports = router;

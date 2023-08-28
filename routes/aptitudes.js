@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/", getAptitudes );
 router.post("/", addAptitud );
-router.put("/",editAptitud)
+router.put("/:id",editAptitud)
 router.delete("/",deleteAptitud);
 
 module.exports = router;

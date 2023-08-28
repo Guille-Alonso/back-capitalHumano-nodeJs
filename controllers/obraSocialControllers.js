@@ -40,8 +40,9 @@ const addObraSocial = async (req, res) => {
 
 const editObraSocial = async(req,res) =>{
   try {
-      const {id,campos}= req.body;
-      const obraSocialModificado = await ObraSocial.findByIdAndUpdate({id:id},campos,{new:true})
+    const campos= req.body;
+    const { id } = req.params;
+    const obraSocialModificado = await ObraSocial.findByIdAndUpdate(id,campos,{new:true})
       if(!obraSocialModificado) throw new CustomError("mal escrito o obraSocial no encontrado",404)
       res.status(200).json({message:"obraSocial modificado con exito",obraSocialModificado})
   } catch (error) {

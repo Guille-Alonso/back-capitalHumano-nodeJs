@@ -70,8 +70,9 @@ const login = async (req, res) => {
 
 const editUser = async(req,res) =>{
   try {
-      const {nombre,campos}= req.body;
-      const usuarioModificado = await Usuario.findOneAndUpdate({nombre:nombre},campos,{new:true})
+    const campos= req.body;
+    const { id } = req.params;
+    const usuarioModificado = await Usuario.findByIdAndUpdate(id,campos,{new:true})
       if(!usuarioModificado) throw new CustomError("mal escrito o usuario no encontrado",404)
       res.status(200).json({message:"usuario modificado con exito",usuarioModificado})
   } catch (error) {

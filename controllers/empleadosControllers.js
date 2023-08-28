@@ -35,9 +35,9 @@ const getEmpleados = async (req, res) => {
         legajo,
         edad,
         foto,
-        puestos:puestos.map((id) => new mongoose.Types.ObjectId(id)),
-        aptitudes:aptitudes.map((id) => new mongoose.Types.ObjectId(id)),
-        obrasSociales: obrasSociales.map((id) => new mongoose.Types.ObjectId(id))
+        // puestos:puestos.map((id) => new mongoose.Types.ObjectId(id)),
+        // aptitudes:aptitudes.map((id) => new mongoose.Types.ObjectId(id)),
+        // obrasSociales: obrasSociales.map((id) => new mongoose.Types.ObjectId(id))
       });
   
       const empleadoSaved = await newEmpleado.save();
@@ -53,8 +53,9 @@ const getEmpleados = async (req, res) => {
   
   const editEmpleado = async(req,res) =>{
     try {
-        const {dni,campos}= req.body;
-        const empleadoModificado = await Empleado.findOneAndUpdate({dni:dni},campos,{new:true})
+        const campos= req.body;
+        const { id } = req.params;
+        const empleadoModificado = await Empleado.findByIdAndUpdate(id,campos,{new:true})
         if(!empleadoModificado) throw new CustomError("mal escrito o dni no encontrado",404)
         res.status(200).json({message:"empleado modificado con exito",empleadoModificado})
     } catch (error) {

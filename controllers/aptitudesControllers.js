@@ -38,8 +38,9 @@ const addAptitud = async (req, res) => {
 
 const editAptitud = async(req,res) =>{
   try {
-      const {id,campos}= req.body;
-      const aptitudModificada = await Aptitud.findByIdAndUpdate({id:id},campos,{new:true})
+    const campos= req.body;
+    const { id } = req.params;
+    const aptitudModificada = await Aptitud.findByIdAndUpdate(id,campos,{new:true})
       if(!aptitudModificada) throw new CustomError("mal escrito o Aptitud no encontrado",404)
       res.status(200).json({message:"aptitud modificada con exito",aptitudModificada})
   } catch (error) {

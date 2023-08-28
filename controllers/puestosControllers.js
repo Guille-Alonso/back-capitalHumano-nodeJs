@@ -41,8 +41,9 @@ const addPuesto = async (req, res) => {
 
 const editPuesto = async(req,res) =>{
   try {
-      const {id,campos}= req.body;
-      const puestoModificado = await PuestoDeTrabajo.findByIdAndUpdate({id:id},campos,{new:true})
+    const campos= req.body;
+    const { id } = req.params;
+    const puestoModificado = await PuestoDeTrabajo.findByIdAndUpdate(id,campos,{new:true})
       if(!puestoModificado) throw new CustomError("mal escrito o puesto no encontrado",404)
       res.status(200).json({message:"puesto modificado con exito",puestoModificado})
   } catch (error) {
