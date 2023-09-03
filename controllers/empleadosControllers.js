@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const Empleado = require("../models/Empleado");
 const CustomError = require("../utils/CustomError");
 
@@ -37,7 +38,7 @@ const getEmpleados = async (req, res) => {
         foto,
         // puestos:puestos.map((id) => new mongoose.Types.ObjectId(id)),
         // aptitudes:aptitudes.map((id) => new mongoose.Types.ObjectId(id)),
-        // obrasSociales: obrasSociales.map((id) => new mongoose.Types.ObjectId(id))
+        obrasSociales: obrasSociales.map((id) => new mongoose.Types.ObjectId(id))
       });
   
       const empleadoSaved = await newEmpleado.save();
