@@ -36,7 +36,7 @@ const getEmpleados = async (req, res) => {
         legajo,
         edad,
         foto,
-        // puestos:puestos.map((id) => new mongoose.Types.ObjectId(id)),
+        puestos:puestos.map((id) => new mongoose.Types.ObjectId(id)),
         // aptitudes:aptitudes.map((id) => new mongoose.Types.ObjectId(id)),
         obrasSociales: obrasSociales.map((id) => new mongoose.Types.ObjectId(id))
       });
