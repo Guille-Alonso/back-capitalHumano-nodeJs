@@ -1,6 +1,6 @@
 const { Schema, model, SchemaType } = require("mongoose");
 
-const PuestoSchema = new Schema(
+const AreaSchema = new Schema(
     {
     nombre:{
     type: String,
@@ -10,18 +10,6 @@ const PuestoSchema = new Schema(
     descripcion:{
     type: String,
     trim: true
-    },
-    area:{
-        type: String,
-        trim: true
-    },
-    sueldoBase:{
-    type: Number,
-    required: [true, "sueldo obligatorio"],
-    },
-    inicio:{
-    type: String, 
-    required: [true, "fecha inicio obligatoria"],
     },
     estado:{
     type: String,
@@ -35,6 +23,4 @@ const PuestoSchema = new Schema(
   }
   );
 
-
-
-module.exports = model("PuestoDeTrabajo", PuestoSchema);
+module.exports = model("AreaDeTrabajo", AreaSchema);
