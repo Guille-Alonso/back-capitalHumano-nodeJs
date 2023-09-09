@@ -18,14 +18,15 @@ const getPuestos = async (req, res) => {
 
 const addPuesto = async (req, res) => {
   try {
-    const { nombre,descripcion, sueldoBase, inicio,estado } =req.body;
+    const { nombre, descripcion, sueldoBase, inicio, estado, area } =req.body;
    
     const newPuesto = new PuestoDeTrabajo({
         nombre,
         descripcion,
         sueldoBase,
         inicio,
-        estado
+        estado,
+        area: new mongoose.Types.ObjectId(area),
     });
 
     const puestoSaved = await newPuesto.save();

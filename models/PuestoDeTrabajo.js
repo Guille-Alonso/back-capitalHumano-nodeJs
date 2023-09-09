@@ -12,8 +12,8 @@ const PuestoSchema = new Schema(
     trim: true
     },
     area:{
-        type: String,
-        trim: true
+        type: Schema.Types.ObjectId,
+        ref: "AreaDeTrabajo",
     },
     sueldoBase:{
     type: Number,
