@@ -1,6 +1,6 @@
 const { Schema, model, SchemaType } = require("mongoose");
 
-const AreaSchema = new Schema(
+const DepartamentoSchema = new Schema(
     {
     nombre:{
     type: String,
@@ -11,15 +11,10 @@ const AreaSchema = new Schema(
     type: String,
     trim: true
     },
-    departamento:{
-      type: Schema.Types.ObjectId,
-      ref: "DepartamentoDeTrabajo",
-    },
     estado:{
     type: String,
     enum: ["activo", "inactivo"]
     }
-
 },
 {
     timestamps: false,
@@ -27,4 +22,4 @@ const AreaSchema = new Schema(
   }
   );
 
-module.exports = model("AreaDeTrabajo", AreaSchema);
+module.exports = model("DepartamentoDeTrabajo", DepartamentoSchema);

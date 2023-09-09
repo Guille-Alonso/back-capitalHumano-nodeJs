@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const CustomError = require("../utils/CustomError");
 const AreaDeTrabajo = require("../models/AreaDeTrabajo");
 
@@ -18,12 +19,13 @@ const getAreas = async (req, res) => {
 
 const addArea = async (req, res) => {
   try {
-    const { nombre,descripcion,estado } =req.body;
+    const { nombre,descripcion,estado, departamento } =req.body;
 
     const newArea = new AreaDeTrabajo({
         nombre,
         descripcion,
-        estado
+        estado,
+        departamento: new mongoose.Types.ObjectId(departamento),
     });
 
     const areaSaved = await newArea.save();
@@ -39,8 +41,17 @@ const addArea = async (req, res) => {
 
 const editArea = async(req,res) =>{
   try {
-    const campos= req.body;
+    // const campos= req.body;
+    // const { id } = req.params;
+    // const areaModificada = await AreaDeTrabajo.findByIdAndUpdate(id,campos,{new:true})
+    //   if(!areaModificada) throw new CustomError("mal escrito u área no encontrada",404)
+    //   res.status(200).json({message:"área modificada con exito",areaModificada})
+    let campos= req.body;
     const { id } = req.params;
+    campos = {
+      ...campos,
+      departamento: new mongoose.Types.ObjectId(campos.departamento),
+    }
     const areaModificada = await AreaDeTrabajo.findByIdAndUpdate(id,campos,{new:true})
       if(!areaModificada) throw new CustomError("mal escrito u área no encontrada",404)
       res.status(200).json({message:"área modificada con exito",areaModificada})
