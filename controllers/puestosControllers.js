@@ -1,13 +1,11 @@
+const { default: mongoose } = require("mongoose");
 const CustomError = require("../utils/CustomError");
 const PuestoDeTrabajo = require("../models/PuestoDeTrabajo");
 
 const getPuestos = async (req, res) => {
   try {
-
     const puestos = await PuestoDeTrabajo.find();
     res.status(200).json({puestos });
-
-  
   } catch (error) {
     res
       .status(error.code || 500)
@@ -42,8 +40,12 @@ const addPuesto = async (req, res) => {
 
 const editPuesto = async(req,res) =>{
   try {
-    const campos= req.body;
+    let campos= req.body;
     const { id } = req.params;
+    campos = {
+      ...campos,
+      area: new mongoose.Types.ObjectId(campos.area),
+    }
     const puestoModificado = await PuestoDeTrabajo.findByIdAndUpdate(id,campos,{new:true})
       if(!puestoModificado) throw new CustomError("mal escrito o puesto no encontrado",404)
       res.status(200).json({message:"puesto modificado con exito",puestoModificado})
