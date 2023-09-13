@@ -28,7 +28,7 @@ const getEmpleados = async (req, res) => {
                         model:"DepartamentoDeTrabajo"
                       }
                   }
-          })
+          }).populate("obrasSociales")
             res.status(200).json({empleados });
            } 
     } catch (error) {

@@ -50,12 +50,12 @@ const EmpleadoSchema = new Schema(
         ref: "PuestoDeTrabajo",
       },
     ],
-    aptitudes: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Aptitud",
-      },
-    ],
+    // aptitudes: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Aptitud",
+    //   },
+    // ],
     obrasSociales: [
       {
         type: Schema.Types.ObjectId,
