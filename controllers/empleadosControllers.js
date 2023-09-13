@@ -10,7 +10,25 @@ const getEmpleados = async (req, res) => {
             res.status(200).json({empleado});
            }
            else{
-            const empleados = await Empleado.find();
+            const empleados = await Empleado.find().populate({
+              path: 'puestos',
+              populate: 
+                  {
+                      path: 'area',
+                      model: 'AreaDeTrabajo'
+                  }
+          }).populate({
+            path: 'puestos',
+              populate: 
+                  {
+                      path: 'area',
+                      model: 'AreaDeTrabajo',
+                      populate:{
+                        path:"departamento",
+                        model:"DepartamentoDeTrabajo"
+                      }
+                  }
+          })
             res.status(200).json({empleados });
            } 
     } catch (error) {
