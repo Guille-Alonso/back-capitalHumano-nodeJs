@@ -5,7 +5,7 @@ const AreaDeTrabajo = require("../models/AreaDeTrabajo");
 const getAreas = async (req, res) => {
   try {
 
-    const areas = await AreaDeTrabajo.find();
+    const areas = await AreaDeTrabajo.find().populate("departamento");
     res.status(200).json({areas });
 
 

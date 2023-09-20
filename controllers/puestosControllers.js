@@ -4,7 +4,7 @@ const PuestoDeTrabajo = require("../models/PuestoDeTrabajo");
 
 const getPuestos = async (req, res) => {
   try {
-    const puestos = await PuestoDeTrabajo.find();
+    const puestos = await PuestoDeTrabajo.find().populate("area");
     res.status(200).json({puestos });
   } catch (error) {
     res
